@@ -4,10 +4,11 @@ import { ToDoList } from './components/to-do-list/to-do-list';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToDoList,],
+  imports: [ToDoList,],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('todolist-app');
+  // protected readonly title = signal('todolist-app');
+  protected readonly title = 'ToDo List';
 }
