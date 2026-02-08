@@ -2,7 +2,7 @@
 <!-- Списки задач -->
 <h1 class="h1">ToDo List</h1>
 <ul> 
-  @for (task of tasks; track task.id) {
+  @for (task of tasks(); track task.id) {
     <app-to-do-item 
         [taskText]="task.text"
         [taskId]="task.id"
@@ -11,20 +11,20 @@
   }
 </ul>
 
- <!-- Добавление новой задачи с Material  -->
- <div>
-    <input 
-      matInput
-      [(ngModel)]="newTaskText"
-      placeholder="Enter new task..."> 
+<div class="add-task">
+  <input 
+    matInput
+    [ngModel]="newTaskText()"
+    (ngModelChange)="newTaskText.set($event)"
+    placeholder="Enter new task...">
+  
   <button 
     type="button" 
-    class="button button--add"
-    [disabled]="!newTaskText.trim()"
+   class="button button--add"
+    type="button"
+    [disabled]="!newTaskText().trim()"
     (click)="addTask()">
     Add task
   </button>
 </div>
 </div>
-
-

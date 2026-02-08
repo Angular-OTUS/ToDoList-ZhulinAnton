@@ -1,18 +1,19 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-to-do-item',
-  imports: [],
   templateUrl: './to-do-item.html',
   styleUrl: './to-do-item.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToDoItem {
-  @Input() taskText: string = '';    
-  @Input() taskId: number = 0;    
+  taskText = input.required<string>();    
+  taskId = input.required<number>();  
+
   
-  @Output() delete = new EventEmitter<number>();
+  delete = output<number>();
 
   onDelete() {
-    this.delete.emit(this.taskId);
+    this.delete.emit(this.taskId());
   }
 }

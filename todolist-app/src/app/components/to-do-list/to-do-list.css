@@ -1,4 +1,4 @@
-/* Общие стили для всех кнопок */
+
 .button {
     color: white;        
     border: none;          
@@ -9,17 +9,11 @@
     font-size: 14px;
   }
 
-/* Кнопка добавления - зелёный фон */
+
 .button--add {
     background-color: green;
   }  
 
-/* Кнопка удаления - красный фон */
-.button--delete {
-    background-color: red;
-  }
-
-/* Стили для disabled состояния */
 .button:disabled {
     opacity: 0.5;           
   }
@@ -31,33 +25,13 @@ text-align: center;
 margin-bottom: 20px;
 }
 
-ul {
-list-style-type: none;
-padding-left: 20px;
-padding-right: 20px;
-margin-bottom: 20px;
-}
-
-li {
-background-color: #f8f9fa;
-padding: 12px 15px;
-margin: 8px 0;
-display: flex;
-justify-content: space-between;
-align-items: center;
-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-
 input {
-width: 60%;
-padding: 10px;
-border: 2px solid #ddd;
-border-radius: 6px;
-font-size: 14px;
-justify-content: space-between;
-padding-right: 610px;
-list-style-type: none;
-padding-left: 20px;
+    flex: 1; 
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    min-width: 200px; 
+    max-width: 500px; 
 }
 
