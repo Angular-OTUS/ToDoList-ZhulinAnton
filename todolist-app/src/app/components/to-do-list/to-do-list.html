@@ -2,20 +2,28 @@
 <!-- Списки задач -->
 <h1 class="h1">ToDo List</h1>
 <ul> 
-    <li> Wake up 
-        <button type="button">Delete</button></li>
-        <li>Wash up
-        <button type="button">Delete</button></li>
-        <li>Breakfast
-        <button type="button">Delete</button>
-    </li>
+  @for (task of tasks(); track task.id) {
+    <app-to-do-item 
+        [taskText]="task.text"
+        [taskId]="task.id"
+        (delete)="deleteTask($event)">
+      </app-to-do-item>
+  }
 </ul>
 
- <!-- Добавление новой задачи -->
- <div>
-    <input type="text">
-    <button type="button">Add task</button>
-  </div>
+<div class="add-task">
+  <input 
+    matInput
+    [ngModel]="newTaskText()"
+    (ngModelChange)="newTaskText.set($event)"
+    placeholder="Enter new task...">
+  
+  <button 
+    type="button" 
+   class="button button--add"
+    [disabled]="!newTaskText().trim()"
+    (click)="addTask()">
+    Add task
+  </button>
 </div>
-
-
+</div>
