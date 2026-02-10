@@ -13,7 +13,4 @@ export class ToDoItem {
   
   delete = output<number>();
 
-  onDelete() {
-    this.delete.emit(this.taskId());
-  }
 }
