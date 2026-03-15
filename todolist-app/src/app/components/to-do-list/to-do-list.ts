@@ -3,11 +3,12 @@ import {FormsModule} from '@angular/forms';
 import { ToDoItem } from '../to-do-item/to-do-item';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Button } from '../button/button';
 
 @Component({
   selector: 'app-to-do-list',
-  imports: [FormsModule, ToDoItem, MatInputModule, MatButtonModule],
+  imports: [FormsModule, ToDoItem, MatInputModule, MatButtonModule, MatProgressSpinnerModule, Button],
   templateUrl: './to-do-list.html',
   styleUrl: './to-do-list.css',
 })
@@ -19,6 +20,14 @@ export class ToDoList {
   ]);
 
   newTaskText = signal('');
+
+  isLoading = signal<boolean>(true);
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.isLoading.set(false);
+    }, 500);
+  }
 
   deleteTask(id: number) {
       this.tasks.update(currentTasks => 

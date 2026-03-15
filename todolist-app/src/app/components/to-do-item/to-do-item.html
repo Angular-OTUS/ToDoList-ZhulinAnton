@@ -1,5 +1,5 @@
 
-<li> 
+<!-- <li> 
     {{ taskText() }}
     <button 
       type="button" 
@@ -7,6 +7,21 @@
       (click)="delete.emit(taskId())">
       Delete
     </button>
+</li> -->
+
+<!-- <li> 
+  {{ taskText() }}
+  <app-button title="Delete"></app-button>
+</li> -->
+
+<li> 
+  {{ taskText() }}
+  <app-button 
+    [title]="'Delete'"
+    (click)="delete.emit(taskId())">
+  </app-button>
 </li>
+
+
 
 
