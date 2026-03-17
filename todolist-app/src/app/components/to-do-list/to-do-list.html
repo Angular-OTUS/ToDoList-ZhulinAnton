@@ -26,23 +26,11 @@
       placeholder="Enter new task..."
       [disabled]="isLoading()">
 
-    <!-- <button 
-      type="button" 
-      class="button button--add"
-      [disabled]="!newTaskText().trim() || isLoading()"
-      (click)="addTask()">
-      Add task
-    </button> -->
-
        <app-button 
         [title]="'Add task'"
         [disabled]="!newTaskText().trim() || isLoading()"
         (click)="addTask()">
     </app-button>
-
-
-
-
   </div>
 </div>
 

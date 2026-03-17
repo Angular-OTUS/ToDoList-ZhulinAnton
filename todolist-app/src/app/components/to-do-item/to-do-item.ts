@@ -6,7 +6,7 @@ import { Button } from '../button/button';
   imports: [Button],
   templateUrl: './to-do-item.html',
   styleUrl: './to-do-item.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoItem {
   taskText = input.required<string>();    
