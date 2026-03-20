@@ -11,7 +11,7 @@ import { Button } from '../button/button';
   templateUrl: './to-do-list.html',
   styleUrl: './to-do-list.css',
 })
-export class ToDoList implements OnInit{
+export class ToDoList implements OnInit {
   tasks = signal([
     { id: 1, text: 'Wake up' },
     { id: 2, text: 'Wash up' },
