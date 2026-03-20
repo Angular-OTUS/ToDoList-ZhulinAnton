@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ToDoList } from './components/to-do-list/to-do-list';
 
 @Component({
@@ -6,8 +6,8 @@ import { ToDoList } from './components/to-do-list/to-do-list';
   imports: [ToDoList],
   templateUrl: './app.html',
   styleUrl: './app.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  // protected readonly title = signal('todolist-app');
   protected readonly title = 'ToDo List';
 }
