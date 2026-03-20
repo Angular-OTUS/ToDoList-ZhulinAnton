@@ -1,29 +1,36 @@
-<div>  
-<!-- Списки задач -->
-<h1 class="h1">ToDo List</h1>
-<ul> 
-  @for (task of tasks(); track task.id) {
-    <app-to-do-item 
-        [taskText]="task.text"
-        [taskId]="task.id"
-        (delete)="deleteTask($event)">
-      </app-to-do-item>
-  }
-</ul>
+<div>
+  <h1 class="h1">ToDo List</h1>
 
-<div class="add-task">
-  <input 
-    matInput
-    [ngModel]="newTaskText()"
-    (ngModelChange)="newTaskText.set($event)"
-    placeholder="Enter new task...">
-  
-  <button 
-    type="button" 
-   class="button button--add"
-    [disabled]="!newTaskText().trim()"
-    (click)="addTask()">
-    Add task
-  </button>
+  @if (isLoading()) {
+    <div class="spinner-container">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Loading tasks...</p>
+    </div>
+  } @else {
+    <ul> 
+      @for (task of tasks(); track task.id) {
+        <app-to-do-item 
+          [taskText]="task.text"
+          [taskId]="task.id"
+          (delete)="deleteTask($event)">
+        </app-to-do-item>
+      } 
+    </ul>
+  }
+
+  <div class="add-task">
+    <input 
+      matInput
+      [ngModel]="newTaskText()"
+      (ngModelChange)="newTaskText.set($event)"
+      placeholder="Enter new task..."
+      [disabled]="isLoading()">
+
+       <app-button 
+        [title]="'Add task'"
+        [disabled]="!newTaskText().trim() || isLoading()"
+        (click)="addTask()">
+    </app-button>
+  </div>
 </div>
-</div>
+

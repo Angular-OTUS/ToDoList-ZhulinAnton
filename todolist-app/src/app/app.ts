@@ -1,14 +1,13 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ToDoList } from './components/to-do-list/to-do-list';
 
 @Component({
   selector: 'app-root',
-  imports: [ToDoList,],
+  imports: [ToDoList],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  // protected readonly title = signal('todolist-app');
   protected readonly title = 'ToDo List';
 }
