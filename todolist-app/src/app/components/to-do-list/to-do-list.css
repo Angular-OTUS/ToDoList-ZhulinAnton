@@ -49,5 +49,6 @@
       transition: border-color 0.3s;
     }
     
-
-    
+    .selected {
+      background-color: #cfe2ff;
+    }

@@ -1,12 +1,13 @@
-<li> 
-  {{ taskText() }}
+<li class="todo-item">
+  <div class="task-text">{{ taskText() }}</div>
+  <div class="task-description">{{ taskDescription() }}</div>
   <app-button 
     [title]="'Delete'"
     color="red"
+    [appTooltip]="'Delete task'"
     (click)="delete.emit(taskId())">
   </app-button>
 </li>
-
 
 
 

@@ -4,23 +4,25 @@ import { ToDoItem } from '../to-do-item/to-do-item';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Button } from '../button/button';
+import { Tooltip } from '../../directive/tooltip';
 
 @Component({
   selector: 'app-to-do-list',
-  imports: [FormsModule, ToDoItem, MatInputModule, MatProgressSpinnerModule, Button],
+  imports: [FormsModule, ToDoItem, MatInputModule, MatProgressSpinnerModule, Button, Tooltip],
   templateUrl: './to-do-list.html',
   styleUrl: './to-do-list.css',
 })
 export class ToDoList implements OnInit {
   tasks = signal([
-    { id: 1, text: 'Wake up' },
-    { id: 2, text: 'Wash up' },
-    { id: 3, text: 'Breakfast' },
+    { id: 1, text: 'Wake up', description: 'Wake up at 7:00' },
+    { id: 2, text: 'Wash up', description: 'Take a shower' },
+    { id: 3, text: 'Breakfast', description: 'Eat breakfast' },
   ]);
 
   newTaskText = signal('');
-
+  newTaskDescription = signal('');
   isLoading = signal<boolean>(true);
+  selectedItemId = signal<number | null>(null);
 
   ngOnInit() {
     setTimeout(() => {
@@ -47,9 +49,15 @@ export class ToDoList implements OnInit {
       { 
         id: maxId + 1, 
         text: text, 
+        description: this.newTaskDescription().trim()
       },
     ]);
   
     this.newTaskText.set('');
+    this.newTaskDescription.set('');
+  }
+
+  selectTask(id: number) {
+    this.selectedItemId.set(id);
   }
 }

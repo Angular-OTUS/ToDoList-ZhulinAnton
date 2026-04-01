@@ -11,8 +11,11 @@
       @for (task of tasks(); track task.id) {
         <app-to-do-item 
           [taskText]="task.text"
+          [taskDescription]="task.description"
           [taskId]="task.id"
-          (delete)="deleteTask($event)">
+          [class.selected]="selectedItemId() === task.id"
+          (delete)="deleteTask($event)"
+          (select)="selectTask(task.id)">
         </app-to-do-item>
       } 
     </ul>
@@ -26,11 +29,20 @@
       placeholder="Enter new task..."
       [disabled]="isLoading()">
 
+    <textarea  
+      matInput
+      [ngModel]="newTaskDescription()"
+      (ngModelChange)="newTaskDescription.set($event)"
+      placeholder="Enter description..."
+      [disabled]="isLoading()">
+    </textarea>
+
+
        <app-button 
         [title]="'Add task'"
         [disabled]="!newTaskText().trim() || isLoading()"
+        [appTooltip]="'Add new task'"
         (click)="addTask()">
     </app-button>
   </div>
 </div>
-
