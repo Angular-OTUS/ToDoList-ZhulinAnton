@@ -1,5 +1,4 @@
-
-li {
+.todo-item {
     background-color: #f8f9fa;
     padding: 12px 15px;
     margin: 8px 0;
@@ -8,4 +7,41 @@ li {
     align-items: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+.task-text {
+    font-weight: bold;
+    width: 100px;
+    flex-shrink: 0;
+  }
+
+  .task-description {
+    color: #666;
+  }
+
+/* .todo-item {
+    background-color: #f8f9fa;
+    padding: 12px 15px;
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    gap: 10px;
+  }
+  
+  .task-text {
+    font-weight: bold;
+    width: 100px;
+    flex-shrink: 0;
+  }
+  
+  .task-description {
+    flex: 1;
+    color: #666;
+  }
+  
+  button {
+    flex-shrink: 0;
+  } */
+
 
