@@ -1,0 +1,95 @@
+<div class="trading-panel">
+  <h2>Торговая панель Мосбиржи</h2>
+  
+  <div class="search-section">
+    <input 
+      type="text" 
+      [value]="searchQuery()"
+      (input)="searchQuery.set($any($event.target).value)"
+      placeholder="Введите тикер (SBER, GAZP, LKOH...)"
+      (keyup.enter)="manualSearch()">
+    <button (click)="manualSearch()" [disabled]="loading()">
+      {{ loading() ? 'Загрузка...' : 'Найти' }}
+    </button>
+  </div>
+
+  @if (error()) {
+    <div class="error">{{ error() }}</div>
+  }
+
+  @if (loading() && !security()) {
+    <div class="loading">
+      <div class="spinner"></div>
+      Загрузка данных...
+    </div>
+  }
+
+  @if (security()) {
+    <div class="security-info" [class.updating]="loading()">
+      
+      @if (loading()) {
+        <div class="update-indicator">
+          <span class="pulse"></span> Обновление...
+        </div>
+      }
+
+      <h3>{{ security()!.SHORTNAME }} ({{ security()!.SECID }})</h3>
+      
+      <div class="price-info">
+        <div class="price">
+          <span class="label">Текущая цена:</span>
+          <span class="value">{{ formatPrice(security()!.LAST) }} ₽</span>
+        </div>
+        <div class="change" 
+             [class.positive]="isPricePositive()" 
+             [class.negative]="isPriceNegative()">
+          {{ formatPercentChange() }}
+        </div>
+      </div>
+
+      <div class="trading-controls">
+        <label>
+          Количество:
+          <input 
+            type="number" 
+            [value]="quantity()"
+            (input)="updateQuantity(+$any($event.target).value)"
+            min="1" 
+            step="1">
+        </label>
+
+        <div class="buttons">
+          <button class="buy-button" (click)="buy()">
+            <span class="button-icon">📈</span>
+            Купить
+            <span class="button-total">{{ totalBuyPrice() }} ₽</span>
+          </button>
+          <button class="sell-button" (click)="sell()">
+            <span class="button-icon">📉</span>
+            Продать
+            <span class="button-total">{{ totalSellPrice() }} ₽</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-label">Предыдущая цена:</span>
+          <span class="stat-value">{{ formatPrice(security()!.PREVPRICE) }} ₽</span>
+        </div>
+
+        <div class="stat-item">
+          <span class="stat-label">Обновлено:</span>
+          <span class="stat-value">{{ security()!.UPDATETIME || 'N/A' }}</span>
+        </div>
+      </div>
+
+      <div class="auto-update">
+         Автообновление каждые {{ refreshInterval() / 1000 }} секунд
+        <button class="pause-button" (click)="toggleAutoRefresh()">
+          {{ isAutoRefreshEnabled() ? 'Пауза' : 'Возобновить' }}
+        </button>
+      </div>
+    </div>
+  }
+</div>
