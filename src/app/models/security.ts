@@ -1,5 +1,7 @@
 export interface Security {
-  SECID: string;                
+  SECID: string;    
+  SHORTNAME: string; 
+  UPDATETIME: string;        
   PREVPRICE: number;     
   LAST: number;            
   LASTTOPREVPRICE: number;         
